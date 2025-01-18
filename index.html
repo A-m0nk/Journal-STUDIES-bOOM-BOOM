@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Journal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .heading {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu-item {
+      width: 150px;
+      height: 150px;
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #444;
+      transform: scale(1.1);
+    }
+
+    .menu-item span {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #content {
+      margin-top: 20px;
+    }
+
+    .back-menu {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .back-menu:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading">Study Journal</h1>
+    <div class="menu">
+      <div class="menu-item" id="add-entry-button">
+        <span>Add Entry</span>
+      </div>
+      <div class="menu-item" id="search-entries-button">
+        <span>Search Entries</span>
+      </div>
+      <div class="menu-item" id="view-entries-button">
+        <span>View Entries</span>
+      </div>
+    </div>
+
+    <div id="content" class="hidden">
+      <div id="add-entry" class="hidden">
+        <h2>Add a New Entry</h2>
+        <input type="text" placeholder="Subject"><br><br>
+        <textarea placeholder="Notes"></textarea><br><br>
+        <input type="date"><br><br>
+        <button>Add Entry</button><br>
+        <button class="back-menu" onclick="backToMenu()">Back to Menu</button>
+      </div>
+      <div id="search-entries" class="hidden">
+        <h2>Search Entries</h2>
+        <input type="text" placeholder="Search by Subject"><br><br>
+        <button>Search</button><br>
+        <button class="back-menu" onclick="backToMenu()">Back to Menu</button>
+      </div>
+      <div id="view-entries" class="hidden">
+        <h2>Your Entries</h2>
+        <p>No entries available</p>
+        <button class="back-menu" onclick="backToMenu()">Back to Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const addEntryButton = document.getElementById("add-entry-button");
+    const searchEntriesButton = document.getElementById("search-entries-button");
+    const viewEntriesButton = document.getElementById("view-entries-button");
+    const content = document.getElementById("content");
+    const addEntry = document.getElementById("add-entry");
+    const searchEntries = document.getElementById("search-entries");
+    const viewEntries = document.getElementById("view-entries");
+
+    addEntryButton.addEventListener("click", () => {
+      content.classList.remove("hidden");
+      addEntry.classList.remove("hidden");
+      searchEntries.classList.add("hidden");
+      viewEntries.classList.add("hidden");
+    });
+
+    searchEntriesButton.addEventListener("click", () => {
+      content.classList.remove("hidden");
+      searchEntries.classList.remove("hidden");
+      addEntry.classList.add("hidden");
+      viewEntries.classList.add("hidden");
+    });
+
+    viewEntriesButton.addEventListener("click", () => {
+      content.classList.remove("hidden");
+      viewEntries.classList.remove("hidden");
+      addEntry.classList.add("hidden");
+      searchEntries.classList.add("hidden");
+    });
+
+    function backToMenu() {
+      content.classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
